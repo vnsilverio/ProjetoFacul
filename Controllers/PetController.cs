@@ -4,11 +4,11 @@ using ProjetoFacul.Models;
 
 namespace ProjetoFacul.Controllers
 {
-    public class HomeController : Controller
+    public class PetController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public PetController(ILogger<PetController> logger)
         {
             _logger = logger;
         }
@@ -18,7 +18,7 @@ namespace ProjetoFacul.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Details(int id)
         {
             return View();
         }

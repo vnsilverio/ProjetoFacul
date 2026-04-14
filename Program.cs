@@ -18,6 +18,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=AreaPublica}/{action=PageHome}/{id?}");
+    pattern: "{controller=Pet}/{action=Index}/{id?}");
 
 app.Run();
