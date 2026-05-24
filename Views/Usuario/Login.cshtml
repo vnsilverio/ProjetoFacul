@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<nav class="navbar">
+    <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+    <a asp-controller="Home" asp-action="Index" style="text-decoration: none; color: var(--primary-purple);">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+</nav>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Entrar</h2>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="loginNome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+            <label>CPF</label>
+            <input type="text" id="loginCpf" placeholder="000.000.000-00" required>
+        </div>
+        <button class="btn-login" onclick="fazerLogin()">Acessar Conta</button>
+        <div id="loginMensagem" style="margin-top: 15px; color: green; text-align: center;"></div>
+        <div class="auth-footer">
+            Não tem conta? <a asp-controller="Usuario" asp-action="Cadastro">Cadastre-se</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function fazerLogin() {
+    var nome = document.getElementById("loginNome").value;
+    var cpf = document.getElementById("loginCpf").value;
+
+    if (!nome || !cpf) {
+        document.getElementById("loginMensagem").style.color = "red";
+        document.getElementById("loginMensagem").innerText = "Por favor, preencha todos os campos.";
+        return;
+    }
+
+    fetch("/Usuario/Consultar?dado=" + encodeURIComponent(cpf))
+        .then(r => r.json())
+        .then(data => {
+            if (data.length > 0 && data[0].nome === nome) {
+                document.getElementById("loginMensagem").style.color = "green";
+                document.getElementById("loginMensagem").innerText = "Login realizado com sucesso! Bem-vindo, " + data[0].nome + "!";
+                setTimeout(() => { window.location.href = "/"; }, 1500);
+            } else {
+                document.getElementById("loginMensagem").style.color = "red";
+                document.getElementById("loginMensagem").innerText = "Nome ou CPF incorretos.";
+            }
+        })
+        .catch(err => {
+            document.getElementById("loginMensagem").style.color = "red";
+            document.getElementById("loginMensagem").innerText = "Erro ao tentar acessar: " + err;
+        });
+}
+</script>
+}

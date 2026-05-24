@@ -1,0 +1,102 @@
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<header>
+    <nav class="navbar">
+        <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Início</a></li>
+            <li><a asp-controller="Produto" asp-action="Produtos">Produtos</a></li>
+            <li><a asp-controller="Home" asp-action="Contato">Contato</a></li>
+            <li><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="page-header">
+    <h1>Nossa Loja</h1>
+    <p>Tudo o que seu pet precisa em um só lugar.</p>
+</div>
+
+<main class="shop-container">
+    <div class="filter-tags">
+        <span class="tag active" onclick="filtrar('Todos', this)">Todos</span>
+        <span class="tag" onclick="filtrar('Rações', this)">Rações</span>
+        <span class="tag" onclick="filtrar('Higiene', this)">Higiene</span>
+        <span class="tag" onclick="filtrar('Brinquedos', this)">Brinquedos</span>
+        <span class="tag" onclick="filtrar('Acessórios', this)">Acessórios</span>
+    </div>
+
+    <div class="products-grid" id="produtosGrid">
+        <div class="product-card" data-categoria="Higiene">
+            <div class="product-image"><i class="fas fa-soap fa-4x"></i></div>
+            <span class="product-category">Higiene</span>
+            <h3 class="product-title">Shampoo Lavanda Relax</h3>
+            <span class="price">R$ 45,90</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+        <div class="product-card" data-categoria="Rações">
+            <div class="product-image"><i class="fas fa-utensils fa-4x"></i></div>
+            <span class="product-category">Alimentação</span>
+            <h3 class="product-title">Ração Premium 10kg</h3>
+            <span class="price">R$ 189,00</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+        <div class="product-card" data-categoria="Brinquedos">
+            <div class="product-image"><i class="fas fa-baseball-ball fa-4x"></i></div>
+            <span class="product-category">Brinquedos</span>
+            <h3 class="product-title">Bolinha Interativa</h3>
+            <span class="price">R$ 25,00</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+        <div class="product-card" data-categoria="Acessórios">
+            <div class="product-image"><i class="fas fa-tshirt fa-4x"></i></div>
+            <span class="product-category">Roupas</span>
+            <h3 class="product-title">Moletom Roxo Pet</h3>
+            <span class="price">R$ 79,90</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+        <div class="product-card" data-categoria="Acessórios">
+            <div class="product-image"><i class="fas fa-dog fa-4x"></i></div>
+            <span class="product-category">Acessórios</span>
+            <h3 class="product-title">Coleira de Couro Eco</h3>
+            <span class="price">R$ 35,00</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+        <div class="product-card" data-categoria="Higiene">
+            <div class="product-image"><i class="fas fa-hand-sparkles fa-4x"></i></div>
+            <span class="product-category">Higiene</span>
+            <h3 class="product-title">Condicionador Brilho</h3>
+            <span class="price">R$ 42,00</span>
+            <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 iPet - Todos os direitos reservados.</p>
+    <div style="color: var(--primary-purple); font-size: 1.5rem; gap: 20px; display: flex; justify-content: center; margin-top: 10px;">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-whatsapp"></i>
+    </div>
+</footer>
+
+@section Scripts {
+<script>
+function filtrar(categoria, elemento) {
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+    elemento.classList.add('active');
+
+    var cards = document.querySelectorAll('.product-card');
+    cards.forEach(function(card) {
+        if (categoria === 'Todos' || card.getAttribute('data-categoria') === categoria) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+</script>
+}

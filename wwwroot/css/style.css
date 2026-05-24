@@ -1,0 +1,438 @@
+/* ==========================================================================
+   1. VARIÁVEIS E CONFIGURAÇÕES GERAIS
+   ========================================================================== */
+:root {
+    --primary-purple: #6A1B9A;
+    --light-purple: #9C4DCC;
+    --pure-white: #FFFFFF;
+    --off-white: #F5F5F5;
+    --text-dark: #333333;
+    --price-green: #2E7D32;
+    --shadow-auth: rgba(106, 27, 154, 0.1);
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--pure-white);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. BARRA DE NAVEGAÇÃO (NAVBAR)
+   ========================================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    background: var(--pure-white);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 26px;
+    font-weight: bold;
+    color: var(--primary-purple);
+    text-decoration: none;
+}
+
+    .logo span {
+        color: var(--text-dark);
+    }
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: var(--text-dark);
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+    .navbar a:hover {
+        color: var(--primary-purple);
+    }
+
+.btn-login-nav {
+    background: var(--primary-purple);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+/* ==========================================================================
+   3. SEÇÃO HERO E CABEÇALHOS
+   ========================================================================== */
+.hero {
+    background-color: var(--primary-purple);
+    background-image: linear-gradient(135deg, var(--primary-purple) 0%, var(--light-purple) 100%);
+    color: var(--pure-white);
+    padding: 100px 10%;
+    text-align: center;
+}
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 20px;
+        animation: fadeInDown 1s;
+    }
+
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+.page-header {
+    background: var(--off-white);
+    padding: 60px 10%;
+    text-align: center;
+}
+
+    .page-header h1 {
+        color: var(--primary-purple);
+        font-size: 2.5rem;
+        margin: 0;
+    }
+
+/* ==========================================================================
+   4. BOTÕES E COMPONENTES GERAIS
+   ========================================================================== */
+.btn-primary {
+    display: inline-block;
+    background-color: var(--pure-white);
+    color: var(--primary-purple);
+    padding: 15px 35px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        background-color: var(--off-white);
+    }
+
+.tag {
+    padding: 8px 20px;
+    border: 2px solid var(--primary-purple);
+    border-radius: 20px;
+    color: var(--primary-purple);
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+    .tag.active, .tag:hover {
+        background: var(--primary-purple);
+        color: white;
+    }
+
+/* ==========================================================================
+   5. SERVIÇOS E PRODUTOS (CARDS)
+   ========================================================================== */
+.services {
+    padding: 80px 10%;
+    text-align: center;
+}
+
+    .services h2 {
+        font-size: 2.5rem;
+        color: var(--primary-purple);
+        margin-bottom: 50px;
+    }
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: var(--off-white);
+    border-radius: 20px;
+    padding: 40px;
+    width: 280px;
+    border-bottom: 5px solid var(--primary-purple);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 25px rgba(106, 27, 154, 0.15);
+        background: white;
+    }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+    .product-card:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        transform: translateY(-5px);
+    }
+
+.product-image {
+    background: #f9f9f9;
+    width: 100%;
+    height: 180px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.product-category {
+    font-size: 0.75rem;
+    color: var(--light-purple);
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+}
+
+.product-title {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    margin: 15px 0 5px 0;
+    font-weight: 600;
+}
+
+.shop-container {
+    padding: 60px 10%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filter-tags {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 10px 25px;
+    white-space: nowrap;
+}
+
+.btn-add {
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+    .btn-add:hover {
+        background: var(--light-purple);
+    }
+
+.price {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--price-green);
+    display: block;
+    margin-bottom: 15px;
+}
+
+/* ==========================================================================
+   6. FORMULÁRIOS E AUTENTICAÇÃO (BLOCO ATUALIZADO)
+   ========================================================================== */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 20px;
+}
+
+.auth-card {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px var(--shadow-auth);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #eee;
+}
+
+    .auth-card h2 {
+        color: var(--primary-purple);
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+
+    .form-group input, .contact-form input, .contact-form textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-sizing: border-box;
+        font-family: inherit;
+    }
+
+.btn-register, .btn-login, .btn-send {
+    width: 100%;
+    background: var(--primary-purple);
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-send {
+    padding: 15px 30px;
+}
+
+    .btn-login:hover, .btn-register:hover, .btn-send:hover {
+        background: var(--light-purple);
+    }
+
+.auth-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+    .auth-footer a {
+        color: var(--primary-purple);
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+/* ==========================================================================
+   7. CONTATO E RODAPÉ
+   ========================================================================== */
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 60px 10%;
+    gap: 50px;
+    justify-content: center;
+}
+
+.contact-info, .contact-form {
+    flex: 1;
+    min-width: 300px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.contact-form {
+    background: var(--off-white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 250px;
+    background: #eee;
+    margin-top: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+    border: 1px dashed var(--primary-purple);
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background: var(--off-white);
+    margin-top: 50px;
+}
+
+/* ==========================================================================
+   8. ANIMAÇÕES E RESPONSIVIDADE
+   ========================================================================== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .shop-container {
+        padding: 30px 5%;
+    }
+}
