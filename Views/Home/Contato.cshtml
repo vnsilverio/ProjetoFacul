@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "Contato";
+}
+
+<header>
+    <nav class="navbar">
+        <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Início</a></li>
+            <li><a asp-controller="Produto" asp-action="Produtos">Produtos</a></li>
+            <li><a asp-controller="Home" asp-action="Contato">Contato</a></li>
+            <li><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<div class="contact-container">
+    <div class="contact-info">
+        <h2>Fale Conosco</h2>
+        <p>Tem alguma dúvida ou quer agendar um horário por telefone? Nossa equipe está pronta para atender você e seu pet.</p>
+        <div class="info-item">
+            <i class="fas fa-phone"></i>
+            <div>
+                <strong>Telefone:</strong><br>
+                (11) 4002-8922
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fab fa-whatsapp"></i>
+            <div>
+                <strong>WhatsApp:</strong><br>
+                (11) 99999-0000
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-envelope"></i>
+            <div>
+                <strong>E-mail:</strong><br>
+                contato@ipet.com.br
+            </div>
+        </div>
+        <div class="info-item">
+            <i class="fas fa-location-dot"></i>
+            <div>
+                <strong>Endereço:</strong><br>
+                Rua das Patas, 123 - Bairro Roxo, São Paulo/SP
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer style="text-align: center; padding: 40px; background: var(--off-white); margin-top: 50px;">
+    <p>&copy; 2026 iPet - Todos os direitos reservados.</p>
+</footer>

@@ -1,0 +1,53 @@
+@{
+    ViewData["Title"] = "Início";
+}
+
+<header>
+    <nav class="navbar">
+        <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Início</a></li>
+            <li><a asp-controller="Produto" asp-action="Produtos">Produtos</a></li>
+            <li><a asp-controller="Home" asp-action="Contato">Contato</a></li>
+            <li><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Cuidado Real para o seu Melhor Amigo</h1>
+        <p>O melhor do petshop na palma da sua mão.</p>
+        <a asp-controller="Produto" asp-action="Produtos" class="btn-primary">Conheça o que há de melhor!</a>
+    </div>
+</section>
+
+<section id="servicos" class="services">
+    <h2>Nossas Melhores Seleções</h2>
+    <div class="card-container">
+        <div class="card">
+            <i class="fas fa-bath fa-3x"></i>
+            <h3>Produtos</h3>
+            <p>O que há de melhor em roupas, acessórios, higiene e apetrejos para o seu companheiro.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-stethoscope fa-3x"></i>
+            <h3>Remédios</h3>
+            <p>Os mais recomendados para manter a saúde do seu pet em dia. De anti-pulgas até remédios orais.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-bone fa-3x"></i>
+            <h3>Pet Shop</h3>
+            <p>Uma seleção premium das melhores rações, petiscos e brinquedos do mercado.</p>
+        </div>
+    </div>
+</section>
+
+<footer style="text-align: center; padding: 40px; background: var(--off-white); margin-top: 50px;">
+    <p>&copy; 2026 iPet - Todos os direitos reservados.</p>
+    <div style="color: var(--primary-purple); font-size: 1.5rem; gap: 20px; display: flex; justify-content: center;">
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-whatsapp"></i>
+    </div>
+</footer>

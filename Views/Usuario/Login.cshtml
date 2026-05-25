@@ -1,0 +1,81 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<nav class="navbar">
+    <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+    <a asp-controller="Home" asp-action="Index" style="text-decoration: none; color: var(--primary-purple);">
+        <i class="fas fa-arrow-left"></i> Voltar
+    </a>
+</nav>
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>Entrar</h2>
+        <div class="form-group">
+            <label>Nome</label>
+            <input type="text" id="loginNome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="form-group">
+            <label>Senha</label>
+            <div style="position: relative;">
+                <input type="password" id="loginSenha" placeholder="Sua senha" required style="width: 100%; padding-right: 40px; box-sizing: border-box;">
+                <span onclick="toggleSenha()" title="Mostrar/ocultar senha"
+                    style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888; font-size: 18px;">
+                    <i id="iconeSenha" class="fas fa-eye"></i>
+                </span>
+            </div>
+        </div>
+        <button class="btn-login" onclick="fazerLogin()">Acessar Conta</button>
+        <div id="loginMensagem" style="margin-top: 15px; color: green; text-align: center;"></div>
+        <div class="auth-footer">
+            Não tem conta? <a asp-controller="Usuario" asp-action="Cadastro">Cadastre-se</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+<script>
+function toggleSenha() {
+    var input = document.getElementById("loginSenha");
+    var icone = document.getElementById("iconeSenha");
+    if (input.type === "password") {
+        input.type = "text";
+        icone.classList.remove("fa-eye");
+        icone.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icone.classList.remove("fa-eye-slash");
+        icone.classList.add("fa-eye");
+    }
+}
+
+function fazerLogin() {
+    var nome = document.getElementById("loginNome").value;
+    var senha = document.getElementById("loginSenha").value;
+
+    if (!nome || !senha) {
+        document.getElementById("loginMensagem").style.color = "red";
+        document.getElementById("loginMensagem").innerText = "Por favor, preencha todos os campos.";
+        return;
+    }
+
+    fetch("/Usuario/Consultar?dado=" + encodeURIComponent(nome))
+        .then(r => r.json())
+        .then(data => {
+            if (data.length > 0 && data[0].nome === nome && data[0].senha === senha) {
+                document.getElementById("loginMensagem").style.color = "green";
+                document.getElementById("loginMensagem").innerText = "Login realizado com sucesso! Bem-vindo, " + data[0].nome + "!";
+                setTimeout(() => { window.location.href = "/"; }, 1500);
+            } else {
+                document.getElementById("loginMensagem").style.color = "red";
+                document.getElementById("loginMensagem").innerText = "Nome ou senha incorretos.";
+            }
+        })
+        .catch(err => {
+            document.getElementById("loginMensagem").style.color = "red";
+            document.getElementById("loginMensagem").innerText = "Erro ao tentar acessar: " + err;
+        });
+}
+</script>
+}
