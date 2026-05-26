@@ -4,12 +4,20 @@
 
 <header>
     <nav class="navbar">
-        <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+         <a asp-controller="Home" asp-action="Index" style="display:flex; align-items:center; gap:10px;">
+         <img src="/images/petshoplogo.png" alt="iPet" style="height: 250px;" />
+         <span class="logo">i<span>Pet</span></span>
+         </a>
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Início</a></li>
             <li><a asp-controller="Produto" asp-action="Produtos">Produtos</a></li>
             <li><a asp-controller="Home" asp-action="Contato">Contato</a></li>
-            <li><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+            <li id="navLogin"><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+            <li id="navUsuario" style="display:none;">
+                <span id="nomeUsuario" style="color: var(--primary-purple); font-weight: bold;"></span>
+                &nbsp;
+                <a href="#" onclick="fazerLogout()" class="btn-login-nav">Sair</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -30,42 +38,60 @@
 
     <div class="products-grid" id="produtosGrid">
         <div class="product-card" data-categoria="Higiene">
-            <div class="product-image"><i class="fas fa-soap fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/shampoo.jpeg" alt="Shampoo Lavanda Relax" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Higiene</span>
             <h3 class="product-title">Shampoo Lavanda Relax</h3>
             <span class="price">R$ 45,90</span>
             <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
         </div>
         <div class="product-card" data-categoria="Rações">
-            <div class="product-image"><i class="fas fa-utensils fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/racao.jpeg" alt="Ração Premium 10kg" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Alimentação</span>
             <h3 class="product-title">Ração Premium 10kg</h3>
             <span class="price">R$ 189,00</span>
             <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
         </div>
         <div class="product-card" data-categoria="Brinquedos">
-            <div class="product-image"><i class="fas fa-baseball-ball fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/bolinha.jpeg" alt="Bolinha Interativa" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Brinquedos</span>
             <h3 class="product-title">Bolinha Interativa</h3>
             <span class="price">R$ 25,00</span>
             <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
         </div>
         <div class="product-card" data-categoria="Acessórios">
-            <div class="product-image"><i class="fas fa-tshirt fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/moletom.jpeg" alt="Moletom Roxo Pet" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Roupas</span>
             <h3 class="product-title">Moletom Roxo Pet</h3>
             <span class="price">R$ 79,90</span>
             <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
         </div>
         <div class="product-card" data-categoria="Acessórios">
-            <div class="product-image"><i class="fas fa-dog fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/coleira.jpeg" alt="Coleira de Couro Eco" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Acessórios</span>
             <h3 class="product-title">Coleira de Couro Eco</h3>
             <span class="price">R$ 35,00</span>
             <button class="btn-add"><i class="fas fa-shopping-cart"></i> Adicionar</button>
         </div>
         <div class="product-card" data-categoria="Higiene">
-            <div class="product-image"><i class="fas fa-hand-sparkles fa-4x"></i></div>
+            <div class="product-image">
+                <img src="/images/condicionador.jpeg" alt="Condicionador Brilho" 
+                     style="width:100%; height:150px; object-fit:cover;" />
+            </div>
             <span class="product-category">Higiene</span>
             <h3 class="product-title">Condicionador Brilho</h3>
             <span class="price">R$ 42,00</span>
@@ -97,6 +123,18 @@ function filtrar(categoria, elemento) {
             card.style.display = 'none';
         }
     });
+}
+
+var nome = localStorage.getItem("usuarioNome");
+if (nome) {
+    document.getElementById("navLogin").style.display = "none";
+    document.getElementById("navUsuario").style.display = "";
+    document.getElementById("nomeUsuario").innerText = "Olá, " + nome + "!";
+}
+
+function fazerLogout() {
+    localStorage.removeItem("usuarioNome");
+    window.location.reload();
 }
 </script>
 }

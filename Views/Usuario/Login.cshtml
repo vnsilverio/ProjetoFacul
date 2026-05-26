@@ -66,6 +66,7 @@ function fazerLogin() {
             if (data.length > 0 && data[0].nome === nome && data[0].senha === senha) {
                 document.getElementById("loginMensagem").style.color = "green";
                 document.getElementById("loginMensagem").innerText = "Login realizado com sucesso! Bem-vindo, " + data[0].nome + "!";
+                localStorage.setItem("usuarioNome", data[0].nome);
                 setTimeout(() => { window.location.href = "/"; }, 1500);
             } else {
                 document.getElementById("loginMensagem").style.color = "red";

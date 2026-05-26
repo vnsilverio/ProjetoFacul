@@ -4,12 +4,20 @@
 
 <header>
     <nav class="navbar">
-        <a asp-controller="Home" asp-action="Index" class="logo">i<span>Pet</span></a>
+        <a asp-controller="Home" asp-action="Index" style="display:flex; align-items:center; gap:10px;">
+        <img src="/images/petshoplogo.png" alt="iPet" style="height: 250px;" />
+        <span class="logo">i<span>Pet</span></span>
+        </a>
         <ul>
             <li><a asp-controller="Home" asp-action="Index">Início</a></li>
             <li><a asp-controller="Produto" asp-action="Produtos">Produtos</a></li>
             <li><a asp-controller="Home" asp-action="Contato">Contato</a></li>
-            <li><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+            <li id="navLogin"><a asp-controller="Usuario" asp-action="Login" class="btn-login-nav">Login</a></li>
+            <li id="navUsuario" style="display:none;">
+                <span id="nomeUsuario" style="color: var(--primary-purple); font-weight: bold;"></span>
+                &nbsp;
+                <a href="#" onclick="fazerLogout()" class="btn-login-nav">Sair</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -51,3 +59,19 @@
         <i class="fab fa-whatsapp"></i>
     </div>
 </footer>
+
+@section Scripts {
+<script>
+var nome = localStorage.getItem("usuarioNome");
+if (nome) {
+    document.getElementById("navLogin").style.display = "none";
+    document.getElementById("navUsuario").style.display = "";
+    document.getElementById("nomeUsuario").innerText = "Olá, " + nome + "!";
+}
+
+function fazerLogout() {
+    localStorage.removeItem("usuarioNome");
+    window.location.reload();
+}
+</script>
+}
